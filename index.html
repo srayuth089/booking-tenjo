@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Title of the document</title>
+
     <!-- CSS only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
@@ -14,6 +15,7 @@
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"
     ></script>
+
     <style>
       html {
         height: 100%;
@@ -190,27 +192,43 @@
   <body>
     <div class="login-box">
       <h2>Booking</h2>
-      <form>
+      <form id="form-submit" action="https://script.google.com/macros/s/AKfycbz8MBjyr9l6RBeL36m-SIsdqEYgpO4tScXxhvrEC6BfO4S_Bqnwol1NUzv4E3UUTXfb9A/exec?path=/product" method="post">
         <div class="user-box">
-          <input type="text" name="" required="" />
+          <input type="text" name="first_name" required="" id="first_name" />
           <label>First Name</label>
         </div>
         <div class="user-box">
-          <input type="text" name="" required="" />
+          <input type="text" name="last_name" required="" id="last_name" />
           <label>Lanst Name</label>
         </div>
         <div class="user-box">
-          <input type="text" name="" required="" />
+          <input type="text" name="phone" required="" id="phone" />
           <label>Phone</label>
         </div>
-        <a href="#">
+        <a href="javascript:submit()">
           <span></span>
           <span></span>
           <span></span>
           <span></span>
           Submit
         </a>
+        <!-- javascript:document.getElementById('form-submit').submit() -->
       </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+      function submit(){
+
+        var formData = JSON.stringify($("#form-submit").serializeArray());
+        $.ajax({
+          type: "POST",
+          url: "https://script.google.com/macros/s/AKfycbz8MBjyr9l6RBeL36m-SIsdqEYgpO4tScXxhvrEC6BfO4S_Bqnwol1NUzv4E3UUTXfb9A/exec?path=/product",
+          data: formData,
+          success: function(){},
+          dataType: "json",
+          contentType : "application/json"
+        });
+      }
+    </script>
   </body>
 </html>
