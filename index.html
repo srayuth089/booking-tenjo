@@ -192,7 +192,11 @@
   <body>
     <div class="login-box">
       <h2>Booking</h2>
-      <form id="form-submit" action="https://script.google.com/macros/s/AKfycbz8MBjyr9l6RBeL36m-SIsdqEYgpO4tScXxhvrEC6BfO4S_Bqnwol1NUzv4E3UUTXfb9A/exec?path=/product" method="post">
+      <form
+        id="form-submit"
+        action="https://script.google.com/macros/s/AKfycbz8MBjyr9l6RBeL36m-SIsdqEYgpO4tScXxhvrEC6BfO4S_Bqnwol1NUzv4E3UUTXfb9A/exec?path=/product"
+        method="post"
+      >
         <div class="user-box">
           <input type="text" name="first_name" required="" id="first_name" />
           <label>First Name</label>
@@ -215,18 +219,44 @@
         <!-- javascript:document.getElementById('form-submit').submit() -->
       </form>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
     <script>
-      function submit(){
-
-        var formData = JSON.stringify($("#form-submit").serializeArray());
-        $.ajax({
-          type: "POST",
+      function submit() {
+        // var formData = JSON.stringify($("#form-submit").serializeArray());
+        // $.ajax({
+        //   type: "POST",
+        //   url: "https://script.google.com/macros/s/AKfycbz8MBjyr9l6RBeL36m-SIsdqEYgpO4tScXxhvrEC6BfO4S_Bqnwol1NUzv4E3UUTXfb9A/exec?path=/product",
+        //   data: {
+        //     first_name: $('#first_name').val(),
+        //     last_name: $('#last_name').val(),
+        //     phone: $('#phone').val(),
+        //   },
+        //   success: function(){},
+        //   dataType: "json",
+        //   contentType : "application/json"
+        // });
+        var settings = {
           url: "https://script.google.com/macros/s/AKfycbz8MBjyr9l6RBeL36m-SIsdqEYgpO4tScXxhvrEC6BfO4S_Bqnwol1NUzv4E3UUTXfb9A/exec?path=/product",
-          data: formData,
-          success: function(){},
-          dataType: "json",
-          contentType : "application/json"
+          method: "POST",
+          timeout: 0,
+          headers: {
+            "Content-Type": "application/json",
+            Cookie:
+              "1P_JAR=2022-07-22-16; AEC=AakniGMP-2C-JTieW9qhsTbLVjUe8E9O75bxt1cCRdy-SQsptqyqVS3fYg; NID=511=Mn59DhjIBbo2sjMdHEEQKdttjxM3Esi3FD_Z-TL2ezRvmI1cCEEJLdwuORXQ1QgMEInNUQ-ZhmW05c1AxV-KvpZac_YgN6BhTztlryPqpUOfLx7EK3MASiYLMBw99HLi93Q4SPMF6sFxH81gpIng8413P3U57ORXwdnCDJEcei0",
+          },
+          data: JSON.stringify({
+            first_name: "ศรายุทธ",
+            last_name: 500,
+            phone: 3,
+          }),
+        };
+
+        $.ajax(settings).done(function (response) {
+          console.log(response);
         });
       }
     </script>
